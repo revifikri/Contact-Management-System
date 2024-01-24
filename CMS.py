@@ -1,24 +1,29 @@
 import re
 from os import system
 
-class contact_book:
-    def __init__(self, name=None, phone_num=None, email=None) -> None:
+class contact_book: 
+    # Create class that can return name, phone number and email
+    def __init__(self, name=None, phone_num=None, email=None) -> None: 
+        # None: we don't need to input some value for every command
         self.name = name
         self.phone_num = phone_num
         self.email = email
         
-    def write_file(self):
+    def write_file(self): 
+        # Create or append some input to the file "contact list"
         text = f'''Name            : {self.name.capitalize()}\
         \nPhone number    : {self.phone_num}\nEmail           : {self.email}\n\n'''
         with open("contact list.txt", "a") as file:
             file.write(text) 
     
-    def read_file():
+    def read_file(): 
+        # Display a list of all contacts
         with open("contact list.txt", "r") as file:
             print("List of All Contacts\n")
             print(file.read()) 
     
-    def search_file(User):
+    def search_file(User): 
+        # Search the specific contact using regular expression
         text = ""
         with open("contact list.txt", "r") as file:
             for word in file.read():
@@ -29,9 +34,10 @@ class contact_book:
         if matches:
             print(matches.group()) 
         else:
-            print('Contact not found\n')
+            print('Contact not found\n') 
           
-    def delete_file(User):
+    def delete_file(User): 
+        # Search the specific contact 
         text = ""
         with open("contact list.txt", "r") as file:
             for word in file.read():
@@ -44,8 +50,10 @@ class contact_book:
             print(matches.group())
             choice = input("Do you want to delete this contact?(y/n) : ")
             if choice == "y":
+                # If the user want to delete the contact we will replace the specific contact with ""
                 new_text = text.replace(matches.group(), "")
                 with open("contact list.txt", "w") as file:
+                    # Rewrite the entire contact 
                     file.write(new_text)
                 print("Contact has been successfully deleted")
             else: pass 
@@ -53,6 +61,7 @@ class contact_book:
             print('Contact not found\n')
            
     def edit_file(User):
+        # Search the specific contact
         text = ""
         with open("contact list.txt", "r") as file:
             for word in file.read():
@@ -65,6 +74,7 @@ class contact_book:
             choice = input("Do you want to edit this contact?(y/n) : ")
             
             if choice == "y":
+                # If the user want to edit the contact we will replace the specific contact with the new one
                 Name = input("\nEnter the new name : ")
                 Phone_num = input("Enter the new phone number : ")
                 Email = input("Enter the new email : ")
@@ -73,6 +83,7 @@ class contact_book:
                             "\nPhone number    : " + Phone_num +
                             "\nEmail           : " + Email + "\n\n")
                 with open("contact list.txt", "w") as file:
+                    # Rewrite the entire contact
                     file.write(new_text)
                 print("Contact has been successfully edited")
             else: pass
